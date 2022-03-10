@@ -4,8 +4,98 @@
         <title>
             SPA
         </title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     </head>
     <body>
-        spa
+        <nav class="header">
+            <div class="logo"> 
+                <img src="./assets/contorno-de-forma-de-circulo.png" alt=""> 
+                <img src="./assets/triangulo.png" alt="">
+                <img src="./assets/contorno-quadrado.png" alt="">
+                <img src="./assets/user.png" alt="">
+            </div>
+            <h1>Controle financeiro</h1>
+            <div class="menu">
+                <button>&#9776;</button>
+                <ul>
+                    <button>X</button>
+                <div class="cadastro">
+                    <p>Cadastro de transações</p>
+                </div>
+                <div class="limpar">
+                    <p>Limpar dados</p>
+                </div>  
+                </ul>
+
+            </div>
+        </nav>
+        <div class="tudo">
+            <section class="corpo">
+                <h2 class="nova">
+                    Nova transação
+                </h2>
+                <div class="inputs">
+                    <div class="input-container">
+                        <label for="compra">Tipo de transação</label> 
+                        <input placeholder="Compra" type="text" id="compra" name="compra"> 
+                    </div>
+                    <div class="input-container centro">
+                        <label for="mercadoria"> Nome da mercadoria </label>
+                        <input placeholder="Input" type="text" id="mercadoria" name="mercadoria"> 
+                    </div>
+                    <div class="input-container">
+                        <label for="valor">Valor</label> 
+                        <input placeholder="R$ 0,00" type="text" id="valor" name="valor"> 
+                    </div>
+                </div>
+                <div class="adicionar">
+                    <button>
+                        Adicionar transação
+                    </button>
+                </div>
+            </section>
+            <hr class="linha">
+            <section class="extrato">
+                <h3>
+                    Extrato de transações
+                </h3>  
+                <div class="texto">
+                    <div class="mercadoria"> Mercadoria</div>
+                    <div class="valor">Valor</div>
+                </div>
+                <hr>
+                <div class="line">
+                    <div class="descricao"> <span>+</span> <p>Lorem impsun dolor sit amet consectetur</p></div>
+                    <div class="preco">R$ 1.999,99 </div>
+                </div>
+                <hr>
+                <div class="line">
+                    <div class="descricao"> <span>-</span> <p>Quis nostrud exercitation</p></div>
+                    <div class="preco">R$ 99,99 </div>
+                </div>
+                <hr>
+                <div class="line">
+                    <div class="descricao"> <span>+</span> <p>Lorem impsun</p></div>
+                    <div class="preco">R$ 9,99 </div>
+                </div>
+                <hr><hr>
+                <div class="total">
+                    <div>Total</div>
+                    <div> R$ 12.909,99</div>
+                </div>
+            </section>
+        </div>
+        <!-- <div class="quis">
+            <div>- Quis nostrud exercitation </div>
+            <div> R$ 99,99</div>
+        </div>
+        <hr>
+        <div class="impsun">
+            <div>+ Lorem impsun</div>
+            <div>R$ 9,99</div>
+        </div> -->
     </body>
 </html>
