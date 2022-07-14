@@ -19,47 +19,64 @@
             </div>
             <h1>Controle financeiro</h1>
             <div class="menu">
-                <button>&#9776;</button>
-                <ul>
-                    <button>X</button>
+                <ul class="menu-desktop">
                 <div class="cadastro">
                     <p>Cadastro de transações</p>
                 </div>
                 <div class="separacao"></div>
-                <div class="limpar">
-                    <p>Limpar dados</p>
+                <div class="limpar" onclick="limparDados()" >
+                    <p> Limpar dados </p>
+                </div>  
+                </ul>
+                <button id="botao-menu" onclick="abrirFechar()">&#9776;</button>
+                <ul id="menu-mobile" class="menu-mobile">
+                    <button onclick="abrirFechar()">X</button>
+                <div class="cadastro">
+                    <p>Cadastro de transações</p>
+                </div>
+                <div class="separacao"></div>
+                <div class="limpar" onclick="limparDados()" >
+                    <p> Limpar dados </p>
                 </div>  
                 </ul>
 
             </div>
         </nav>
         <div class="tudo">
-            <section class="corpo">
+            <form onsubmit="adicionarTransacao(event)" class="corpo" id="transactionForm" name="form">
                 <h2 class="nova">
                     Nova transação
                 </h2>
                 <div class="inputs">
                     <div class="input-container">
                         <label for="compra">Tipo de transação</label> 
-                        <input placeholder="Compra" type="text" id="compra" name="compra"> 
+                        <select id="compra" name="compra" class="compra">
+                            <option value="" selected disabled>Selecione um tipo</option>
+                            <option value="-">Compra</option>
+                            <option value="+">Venda</option>
+                          </select>
+                   <div class="erro" id="compra-erro"></div>
+
                     </div>
                     <div class="input-container centro">
                         <label for="mercadoria"> Nome da mercadoria </label>
-                        <input placeholder="Input" type="text" id="mercadoria" name="mercadoria"> 
+                        <input class="mercadoria" placeholder="Mercadoria" type="text" id="mercadoria" name="mercadoria" > 
+                   <div class="erro" id="mercadoria-erro"></div>
                     </div>
-                    <div class="input-container">
+                    <div class="input-container">   
                         <label for="valor">Valor</label> 
-                        <input placeholder="R$ 0,00" type="text" id="valor" name="valor"> 
+                        <input class="valor" placeholder="R$ 0,00" type="text" maxlenght="9" i$*$d = "valor" id="valor" name="valor" onkeyup ="mascaraMoeda()" > 
+                   <div class="erro" id="valor-erro"></div>
                     </div>
                 </div>
                 <div class="adicionar">
-                    <button>
+                    <button type="submit">
                         Adicionar transação
                     </button>
                 </div>
-            </section>
+            </form>
             <hr class="linha">
-            <section class="extrato">
+            <section class="extrato" >
                 <h3>
                     Extrato de transações
                 </h3>  
@@ -68,35 +85,14 @@
                     <div class="valor">Valor</div>
                 </div>
                 <hr>
-                <div class="line">
-                    <div class="descricao"> <span>+</span> <p>Lorem impsun dolor sit amet consectetur</p></div>
-                    <div class="preco">R$ 1.999,99 </div>
-                </div>
-                <hr>
-                <div class="line">
-                    <div class="descricao"> <span>-</span> <p>Quis nostrud exercitation</p></div>
-                    <div class="preco">R$ 99,99 </div>
-                </div>
-                <hr>
-                <div class="line">
-                    <div class="descricao"> <span>+</span> <p>Lorem impsun</p></div>
-                    <div class="preco">R$ 9,99 </div>
-                </div>
+             <div class="list" id="list"></div>
                 <hr><hr>
-                <div class="total">
+                <div class="total" id="total">
                     <div>Total</div>
-                    <div> R$ 12.909,99</div>
+                    <div id="soma"> R$ 0,00</div>
                 </div>
             </section>
         </div>
-        <!-- <div class="quis">
-            <div>- Quis nostrud exercitation </div>
-            <div> R$ 99,99</div>
-        </div>
-        <hr>
-        <div class="impsun">
-            <div>+ Lorem impsun</div>
-            <div>R$ 9,99</div>
-        </div> -->
+        <script src="./assets/js/index.js"></script>
     </body>
 </html>
