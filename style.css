@@ -191,6 +191,16 @@ h3{
     color: red;
     height: 17px;
 }
+
+.lucro{
+    display: none;
+}
+.prejuizo{
+    display: none;
+}
+.lucroPrejuizo{
+    display: block;
+}
 @media only screen and (min-device-width: 426px) {
 
     .tudo{

@@ -1,6 +1,13 @@
 var total = 0
 var totalContainer = document.getElementById('soma')
 
+var registros = JSON.parse(localStorage.getItem('registros'))
+if(!registros){
+  registros = []
+}
+registros.forEach(element => {
+  inserirRegistro(element.type, element.nome, element.preco)
+});
 function adicionarTransacao(event){
   event.preventDefault()
   if(isValid()){
@@ -37,15 +44,36 @@ function isValid(values){
 function adicionar(){
   var compra = document.getElementById('compra')
   var valor = document.getElementById('valor')
-  var list = document.getElementById('list')
   var type = compra.value 
+  inserirRegistro(type, form.mercadoria.value, valor.value)
+  salvarLocalStorage(type, form.mercadoria.value, valor.value)
+}
+function salvarLocalStorage(type, nome, preco){
+  var registro = {
+    type: type,
+    nome: nome,
+    preco: preco,
+  }
+  registros.push(registro)
+  localStorage.setItem('registros', JSON.stringify(registros) )
+}
+
+function inserirRegistro(type, nome, preco){
+  var list = document.getElementById('list')
   var registro = document.createElement('div')
   registro.classList.add('line')
   registro.innerHTML =  `
-  <div class="descricao"> <span>${type}</span> <p>${form.mercadoria.value}</p></div>
-  <div class="preco">${form.valor.value} </div>
+  <div class="descricao"> <span>${type}</span> <p>${nome}</p></div>
+  <div class="preco">${preco} </div>
   `
-  var z = valor.value.replace(/[^\d]+/gi,'')
+  list.appendChild(registro)
+
+  atualizarTotal(preco, type)
+}
+
+function atualizarTotal(valor, type){
+  var z = valor.replace(/[^\d]+/gi,'')
+  console.log(valor, z)
   if (type === '-'){
     total = total - z
   }
@@ -53,9 +81,22 @@ function adicionar(){
     total = (total + parseInt(z))
   }
   totalContainer.innerHTML = formatarMoeda(total)
-  list.appendChild(registro)
 
-}
+  
+  var lucro = document.getElementById("lucro");
+  var prejuizo = document.getElementById("prejuizo");
+    
+    if (total > 0){
+      lucro.classList.toggle("lucroPrejuizo");
+      console.log('lucro')
+    }
+
+    if (total < 0){
+      prejuizo.classList.toggle("lucroPrejuizo");
+      console.log('prejuizo')
+    }
+    
+  }
 
 String.prototype.reverse = function(){
   return this.split('').reverse().join(''); 
@@ -92,6 +133,8 @@ function limparDados(){
   if (r==true){
     document.getElementById('list').innerHTML = ''
     totalContainer.innerHTML = 'R$ 0,00'
+    localStorage.clear()
+    total = 0
   }
 }
 
@@ -110,4 +153,3 @@ function formatarMoeda(value){
   }
   return formatado
 }
-
